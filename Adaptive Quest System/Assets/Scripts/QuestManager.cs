@@ -47,9 +47,6 @@ public class QuestManager : MonoBehaviour
     //world model
     public Text worldModelText;
 
-    //WIP
-    int i = 1;
-
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -80,7 +77,6 @@ public class QuestManager : MonoBehaviour
     {
 
         activeQuest = playerState.SelectQuest(worldState.FilterQuests(quests));
-      //  activeQuest = quests[i++ % quests.Count];
 
         Debug.Log("starting new quest");
         activeQuest.startQuest();
@@ -90,7 +86,7 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         playerState = new PlayerModelExample();
-        worldState = new WorldModelExample(new int[] {-1,-1,-1,-1,-1,-1 });
+        worldState = new WorldModelExample(new int[] { -1, -1, -1, -1, -1, -1 });
         ((WorldModelExample)worldState).PrintModel();
         solutionCanvas.SetActive(false);
         textbox.SetActive(false);
@@ -113,11 +109,11 @@ public class QuestManager : MonoBehaviour
     {
         //q0
         Quest temp = new Quest(new List<SolutionInfo>() {
-        new SolutionInfo("Repair wheelbarrow", new List<StepInfo>() { new StepInfo(4, new Vector3(-22, 0, -4), "You apply your magic powers to the wheelbarrow, repairing it.")}, new PlayerModelExample(new float[]{0,0,0,1,0}), new WorldModelExample(new int[]{1,0,0,0,0,0 })),
+        new SolutionInfo("Repair 1 wheelbarrow", new List<StepInfo>() { new StepInfo(4, new Vector3(-22, 0, -4), "You apply your magic powers to the wheelbarrow, repairing it.")}, new PlayerModelExample(new float[]{0,0,0,1,0}), new WorldModelExample(new int[]{1,0,0,0,0,0 })),
         new SolutionInfo("Kill 1 normal monster", new List<StepInfo>() { new StepInfo(3, new Vector3(-20, 0, 5), "You kill the monster.")}, new PlayerModelExample(new float[]{0,0,1,0,0}), new WorldModelExample(new int[]{1,0,0,0,0,0 })),
-        new SolutionInfo("Deliver item to the mage", new List<StepInfo>() { new StepInfo(2, new Vector3(-79, 0, 3), "The villager gives you the item."),new StepInfo(1, new Vector3(28, 0, 30), "You give the mage the item.")}, new PlayerModelExample(new float[]{1,0,0,0,0}), new WorldModelExample(new List<Reward>(){new Reward("10 coins")},new int[]{1,0,0,0,4,0 })),
+        new SolutionInfo("Deliver an item to the mage", new List<StepInfo>() { new StepInfo(2, new Vector3(-79, 0, 3), "The villager gives you the item."),new StepInfo(1, new Vector3(28, 0, 30), "You give the mage the item.")}, new PlayerModelExample(new float[]{1,0,0,0,0}), new WorldModelExample(new List<Reward>(){new Reward("10 coins")},new int[]{1,0,0,0,4,0 })),
         new SolutionInfo("Open 1 treasure chest", new List<StepInfo>() { new StepInfo(5, new Vector3(25, 0, 40), "The chest is locked.")}, new PlayerModelExample(new float[]{0,1,0,0,0}), new WorldModelExample(new int[]{1,0,0,0,0,0 })),
-        }, new StepInfo(0, new Vector3(-50, 0, -8), "The villager doesn't know you, but if you help them, they might start trusting you."), new WorldModelExample(new int[] { -1, 0, 0, 0, 0, 0 }));
+        }, new StepInfo(0, new Vector3(-50, 0, -8), "The villager doesn't know you, but if you help them, they might start trusting you. Making a delivery will earn you an extra reward."), new WorldModelExample(new int[] { -1, 0, 0, 0, 0, 0 }));
         quests.Add(temp);
 
         GameObject steptemp = Instantiate(stepPrefabs[6], new Vector3(-79, 0, 3), Quaternion.identity);
@@ -131,12 +127,12 @@ public class QuestManager : MonoBehaviour
         quests.Add(new Quest(new List<SolutionInfo>() {
         new SolutionInfo("Collect 3 firewood", new List<StepInfo>() { new StepInfo(0, new Vector3(20, 0, -30), "You collect a pile of firewood."), new StepInfo(0, new Vector3(25, 0, -10), "You collect a pile of firewood."),new StepInfo(0, new Vector3(20, 0, 14), "You collect a pile of firewood."),new StepInfo(1, new Vector3(33, 0, -63), "You hand over the firewood.")}, new PlayerModelExample(new float[]{2,0,0,0,0}), new WorldModelExample(new List<Reward> { new Reward("boots")},new int[] { 0, 1, 0, 0, 0, 0 })),
         new SolutionInfo("Kill 3 dangerous monsters", new List<StepInfo>() { new StepInfo(8, new Vector3(20, 0, -32), "You kill the dangerous monster."),new StepInfo(8, new Vector3(25, 0, -10), "You kill the dangerous monster."),new StepInfo(8, new Vector3(25, 0, 16), "You kill the dangerous monster.")}, new PlayerModelExample(new float[]{0,0,3,0,0}), new WorldModelExample(new int[] { 0, 1, 0, 0, 0, 0 }))
-        }, new StepInfo(0, new Vector3(33, 0, -63), "The villager doesn't know you, but if you help them, they might start trusting you."), new WorldModelExample(new int[] { 0, -1, 0, 0, 0, 0 })));
+        }, new StepInfo(0, new Vector3(33, 0, -63), "The villager doesn't know you, but if you help them, they might start trusting you. They are willing to pay you for firewood."), new WorldModelExample(new int[] { 0, -1, 0, 0, 0, 0 })));
 
         //q2
         quests.Add(new Quest(new List<SolutionInfo>() {
-        new SolutionInfo("Show magic powers", new List<StepInfo>() { new StepInfo(9, new Vector3(30, 0, 30), "You demonstrate your magic powers.")}, new PlayerModelExample(new float[]{0,0,0,1,0}), new WorldModelExample( new int[] { 0, 0, 0, 0, 1, 1 })),
-        new SolutionInfo("Find a gift", new List<StepInfo>() { new StepInfo(5, new Vector3(45, 0, 17), "The chest is locked."),new StepInfo(1, new Vector3(28, 0, 30), "You hand over the gift.")}, new PlayerModelExample(new float[]{0,1,0,0,0}), new WorldModelExample(new int[] { 0, 0, 0, 0, 1, 0 }))
+        new SolutionInfo("Show your magic powers", new List<StepInfo>() { new StepInfo(9, new Vector3(30, 0, 30), "You demonstrate your magic powers.")}, new PlayerModelExample(new float[]{0,0,0,1,0}), new WorldModelExample( new int[] { 0, 0, 0, 0, 1, 1 })),
+        new SolutionInfo("Find and hand over a gift", new List<StepInfo>() { new StepInfo(5, new Vector3(45, 0, 17), "The chest is locked."),new StepInfo(1, new Vector3(28, 0, 30), "You hand over the gift.")}, new PlayerModelExample(new float[]{0,1,0,0,0}), new WorldModelExample(new int[] { 0, 0, 0, 0, 1, 0 }))
         }, new StepInfo(0, new Vector3(28, 0, 30), "The mage is unwilling to talk to you."), new WorldModelExample(new int[] { 0, 0, 0, 0, -1, -1 })));
 
         //q3
@@ -157,23 +153,24 @@ public class QuestManager : MonoBehaviour
         new SolutionInfo("Kill 3 normal monsters", new List<StepInfo>() { new StepInfo(3, new Vector3(20, 0, -20), "You kill the monster."),new StepInfo(3, new Vector3(-15, 0, 25), "You kill the monster."),new StepInfo(3, new Vector3(0, 0, -6), "You kill the monster.") }, new PlayerModelExample(new float[]{3,0,3,0,0}), new WorldModelExample(new List<Reward> { new Reward("sword")})),
         new SolutionInfo("Open 3 trasure chests", new List<StepInfo>() { new StepInfo(5, new Vector3(0, 0, -6), "The chest is locked."),new StepInfo(5, new Vector3(20, 0, -20), "The chest is locked."),new StepInfo(5, new Vector3(-10, 0, -50), "The chest is locked."),new StepInfo(1, new Vector3(28, 0, 30), "You deliver the items.") }, new PlayerModelExample(new float[]{2,3,0,0,0}), new WorldModelExample(new List<Reward> { new Reward("20 coins")})),
         new SolutionInfo("Collect 3 herbs", new List<StepInfo>() { new StepInfo(7, new Vector3(10, 0, 0), "You collect the herbs."),new StepInfo(7, new Vector3(20, 0, -20), "You collect the herbs."),new StepInfo(7, new Vector3(-20, 0, -50), "You collect the herbs."),new StepInfo(1, new Vector3(28, 0, 30), "You deliver the items.")}, new PlayerModelExample(new float[]{2,0,0,0,0}), new WorldModelExample(new List<Reward> { new Reward("20 coins")}))
-        }, new StepInfo(0, new Vector3(28, 0, 30), "The mage needs your help."), new WorldModelExample(new int[] { 0, 0, 0, 0, 1, 0 })));
+        }, new StepInfo(0, new Vector3(28, 0, 30), "The mage needs your help. They are willing to pay you, even more so if you kill monsters for them."), new WorldModelExample(new int[] { 0, 0, 0, 0, 1, 0 })));
 
         //q5
         quests.Add(new Quest(new List<SolutionInfo>() {
         new SolutionInfo("Repair 3 barrels", new List<StepInfo>() { new StepInfo(9, new Vector3(-53, 0, -7), "You repair the barrel."),new StepInfo(9, new Vector3(-55, 0, -6), "You repair the barrel."),new StepInfo(9, new Vector3(-52, 0, -4), "You repair the barrel.")}, new PlayerModelExample(new float[]{2,0,0,3,0}), new WorldModelExample(new List<Reward> { new Reward("20 coins")})),
-        new SolutionInfo("Deliver gift to village B", new List<StepInfo>() { new StepInfo(2, new Vector3(-47, 0, -28), "You are given the gift to be delivered."),new StepInfo(1, new Vector3(33, 0, -63), "You hand over the gift.")}, new PlayerModelExample(new float[]{1,0,0,0,0}), new WorldModelExample(new List<Reward> { new Reward("backback")},new int[] { 0, 0, 1, -1, 0, 0 }))
-        }, new StepInfo(0, new Vector3(-50, 0, -8), "The villager needs help with a number of things."), new WorldModelExample(new int[] { 1, 0, 0, 0, 0, 0 })));
+        new SolutionInfo("Deliver a gift to village B", new List<StepInfo>() { new StepInfo(2, new Vector3(-47, 0, -28), "You are given the gift to be delivered."),new StepInfo(1, new Vector3(33, 0, -63), "You hand over the gift.")}, new PlayerModelExample(new float[]{1,0,0,0,0}), new WorldModelExample(new List<Reward> { new Reward("backback")},new int[] { 0, 0, 1, -1, 0, 0 }))
+        }, new StepInfo(0, new Vector3(-50, 0, -8), "The villager needs help with a number of things. They are willing to pay you, even more so if you repair barrels for them."), new WorldModelExample(new int[] { 1, 0, 0, 0, 0, 0 })));
 
         //q6
         quests.Add(new Quest(new List<SolutionInfo>() {
-        new SolutionInfo("Deliver it to village A", new List<StepInfo>() { new StepInfo(1, new Vector3(-47, 0, -28), "You hand over the herbs.")}, new PlayerModelExample(new float[]{1,0,0,0,0}), new WorldModelExample(new List<Reward> { new Reward("10 coins")},new int[] { 1, 0, 0, 0, 0, 0 })),
-        new SolutionInfo("Deliver it to village B", new List<StepInfo>() { new StepInfo(1, new Vector3(33, 0, -63), "You hand over the herbs.")}, new PlayerModelExample(new float[]{1,0,0,0,0}), new WorldModelExample(new List<Reward> { new Reward("10 coins") },new int[] { 0, 1, 0, 0, 0, 0 }))
+        new SolutionInfo("Deliver the sack of herbs to village A", new List<StepInfo>() { new StepInfo(1, new Vector3(-47, 0, -28), "You hand over the herbs.")}, new PlayerModelExample(new float[]{1,0,0,0,0}), new WorldModelExample(new List<Reward> { new Reward("10 coins")},new int[] { 1, 0, 0, 0, 0, 0 })),
+        new SolutionInfo("Deliver the sack of herbs to village B", new List<StepInfo>() { new StepInfo(1, new Vector3(33, 0, -63), "You hand over the herbs.")}, new PlayerModelExample(new float[]{1,0,0,0,0}), new WorldModelExample(new List<Reward> { new Reward("10 coins") },new int[] { 0, 1, 0, 0, 0, 0 }))
         }, new StepInfo(1, new Vector3(-40, 0, 30), "You find a sack of herbs."), new WorldModelExample(new int[] { 0, 0, 0, 0, 0, 0 })));
 
         SelectFirstQuest();
     }
 
+    //update
     public void UpdatePlayerModel(float weight)
     {
         playerState.UpdateModel(tempPlayerModel, weight);
@@ -205,6 +202,7 @@ public class QuestManager : MonoBehaviour
 
     }
 
+    //should probably be extracted into extra object for clarity
     public void IncreaseValue(int index)
     {
         ((PlayerModelExample)playerState).values[index] += 1.0f;

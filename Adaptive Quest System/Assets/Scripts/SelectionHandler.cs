@@ -25,7 +25,6 @@ public class SelectionHandler : MonoBehaviour
     }
     public void SolutionSelected()
     {
-       // Debug.Log(dropdown.value);
         QuestManager.instance.activeQuest.StartSolution(dropdown.value);
         QuestManager.instance.solutionCanvas.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;

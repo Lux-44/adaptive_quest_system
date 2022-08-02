@@ -45,7 +45,7 @@ public class WorldModelExample : WorldModel
             if (fits)
             {
                 fitting.Add(quests[k]);
-                Debug.Log("fits: "+k);
+             //  Debug.Log("fits: "+k);
             }
         }
 

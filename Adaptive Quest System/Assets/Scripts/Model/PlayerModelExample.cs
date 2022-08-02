@@ -38,8 +38,8 @@ public class PlayerModelExample : PlayerModel
 
             }
         }
-        Debug.Log("sumQuest: " + sumQuest[0] + " " + sumQuest[1] + " " + sumQuest[2] + " " + sumQuest[3] + " " + sumQuest[4]);
-        Debug.Log("player: " + values[0] + " " + values[1] + " " + values[2] + " " + values[3] + " " + values[4]);
+      //  Debug.Log("sumQuest: " + sumQuest[0] + " " + sumQuest[1] + " " + sumQuest[2] + " " + sumQuest[3] + " " + sumQuest[4]);
+      //  Debug.Log("player: " + values[0] + " " + values[1] + " " + values[2] + " " + values[3] + " " + values[4]);
 
         float sum = 0;
         for (int i = 0; i < values.Length; ++i)
@@ -62,11 +62,11 @@ public class PlayerModelExample : PlayerModel
         for (int i = 1; i < quests.Count; ++i)
         {
             float tmp = InnerProduct(quests[i]);
-            Debug.Log(i + " " + tmp);
+          //  Debug.Log(i + " " + tmp);
 
             if (tmp > max)
             {
-                Debug.Log(i + " " + max + " " + tmp);
+            //    Debug.Log(i + " " + max + " " + tmp);
 
                 max = tmp;
                 maxQuest = quests[i];
@@ -74,7 +74,7 @@ public class PlayerModelExample : PlayerModel
             }
         }
 
-        Debug.Log(debugHelper);
+    //    Debug.Log(debugHelper);
         return maxQuest;
     }
 
