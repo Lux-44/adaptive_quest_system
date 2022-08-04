@@ -77,10 +77,10 @@ public class QuestManager : MonoBehaviour
     {
 
         activeQuest = playerState.SelectQuest(worldState.FilterQuests(quests));
-
+     
         Debug.Log("starting new quest");
         activeQuest.startQuest();
-
+        Debug.Log(System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(activeQuest));
     }
 
     void Start()

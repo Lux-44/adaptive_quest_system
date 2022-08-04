@@ -30,6 +30,11 @@ public class WorldModelExample : WorldModel
 
     public List<Quest> FilterQuests(List<Quest> quests)
     {
+        /*
+        foreach (var q in quests)
+        {
+            Debug.Log(System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(q));
+        }*/
         List<Quest> fitting = new List<Quest>();
 
         for (int k=0;k<quests.Count;++k)

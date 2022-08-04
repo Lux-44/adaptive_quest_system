@@ -23,8 +23,8 @@ public class PlayerModelExample : PlayerModel
     public string GetMenuInfo()
     {
 
-        return "Power Gamer: " + System.String.Format("{0:0.00}", values[0]) + "\t\t\tTactician: " + System.String.Format("{0:0.00}", values[1]) + "\t\t\tButt-Kicker: " + System.String.Format("{0:0.00}", values[2])
-            + "\t\t\tSpecialist: " + System.String.Format("{0:0.00}", values[3]) + "\t\t\tMethod Actor: " + System.String.Format("{0:0.00}", values[4]);
+        return "Power Gamer: " + System.String.Format("{0:0.00}", values[0]) + "\n\n\nTactician: " + System.String.Format("{0:0.00}", values[1]) + "\n\n\nButt-Kicker: " + System.String.Format("{0:0.00}", values[2])
+            + "\n\n\nSpecialist: " + System.String.Format("{0:0.00}", values[3]) + "\n\n\nMethod Actor: " + System.String.Format("{0:0.00}", values[4]);
     }
 
     float InnerProduct(Quest other)
@@ -51,6 +51,12 @@ public class PlayerModelExample : PlayerModel
 
     public Quest SelectQuest(List<Quest> quests)
     {
+        /*
+        Debug.Log("---");
+        foreach (var q in quests)
+        {
+            Debug.Log(System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(q));
+        }*/
         if (quests.Count == 0)
         {
             return null;
@@ -74,7 +80,8 @@ public class PlayerModelExample : PlayerModel
             }
         }
 
-    //    Debug.Log(debugHelper);
+        //    Debug.Log(debugHelper);
+       
         return maxQuest;
     }
 
