@@ -27,7 +27,7 @@ public class Solution: MonoBehaviour
     {
         foreach (var info in stepInfos)
         {
-            GameObject stepTemp = Instantiate(QuestManager.instance.stepPrefabs[info.index], info.position, Quaternion.identity);
+            GameObject stepTemp = Instantiate(QuestManager.instance.stepPrefabs[info.index], info.position, Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)));
             stepTemp.GetComponent<Step>().Description = info.description;
             stepTemp.GetComponent<Step>().ParentSolution = this;
             steps.Add(stepTemp);
